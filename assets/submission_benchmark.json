@@ -1,0 +1,68 @@
+{
+  "status": "completed",
+  "evaluated_at": "2026-10-26T14:01:50.178868+00:00",
+  "manifest": {
+    "selection": "SHA256(contextlab-submission-v1:id), first N; no quality filtering",
+    "examples": 50,
+    "eligible_test_rows": 492,
+    "test_rows": 497,
+    "train_pair_overlap": 0,
+    "train_source_overlap": 0,
+    "sha256": "4b6ecccc9f27bf07c5540e163230f0e697c1e72f12f67da1d180230ace6cc640",
+    "reference_status": "Original mined Samanantar references; independent Tamil review pending"
+  },
+  "comparison": [
+    {
+      "system": "base_4bit",
+      "examples": 50,
+      "official_corpus_chrf": 13.2347,
+      "mean_sentence_chrf": 13.135,
+      "mean_latency_seconds": 9.3815,
+      "mean_tamil_script_ratio": 0.9489,
+      "numeric_examples": 7,
+      "mean_numeric_preservation": 0.25,
+      "empty_outputs": 0
+    },
+    {
+      "system": "qlora_adapter",
+      "examples": 50,
+      "official_corpus_chrf": 15.1874,
+      "mean_sentence_chrf": 15.6009,
+      "mean_latency_seconds": 9.3956,
+      "mean_tamil_script_ratio": 1.0,
+      "numeric_examples": 7,
+      "mean_numeric_preservation": 0.1786,
+      "empty_outputs": 0
+    },
+    {
+      "system": "opus_mt",
+      "examples": 50,
+      "official_corpus_chrf": 29.1305,
+      "mean_sentence_chrf": 33.5609,
+      "mean_latency_seconds": 0.2977,
+      "mean_tamil_script_ratio": 0.9709,
+      "numeric_examples": 7,
+      "mean_numeric_preservation": 0.7,
+      "empty_outputs": 0
+    }
+  ],
+  "paired_delta_chrf": 1.9527,
+  "relative_delta_percent": 14.75,
+  "paired_bootstrap_95_percent_interval": [
+    0.7519,
+    3.4623
+  ],
+  "bootstrap_resamples": 1000,
+  "bootstrap_seed": 42,
+  "metric_signature": "SacreBLEU corpus chrF, char_order=6, word_order=0, beta=2, whitespace=False",
+  "hardware": {
+    "device": "cuda:0",
+    "gpu": "NVIDIA GeForce RTX 3050 4GB Laptop GPU",
+    "torch": "2.5.1+cu121",
+    "cuda": "12.1",
+    "peak_qwen_allocated_gib": 0.465
+  },
+  "elapsed_seconds": 986.36,
+  "max_new_tokens": 128,
+  "scope": "Sentence-level held-out mined references; no long-form, semantic or human-quality claim. Bootstrap interval is conditional on this frozen sample."
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evidence-first English-to-Tamil GenAI localization system combining QLoRA, hybrid RAG, graph memory and controlled verification.">
+  <meta name="theme-color" content="#07110f">
+  <title>ContextLab — English-to-Tamil GenAI Research System</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261026">
+  <link rel="stylesheet" href="workspace.css?v=20261026">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to project</a>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#overview"><span class="brand-mark">த</span><span><strong>ContextLab</strong><small>Localization Intelligence</small></span></a>
+    <nav class="top-nav" aria-label="Project navigation">
+      <button class="nav-item active" data-section="overview">Overview</button><button class="nav-item" data-section="workspace">Workspace</button><button class="nav-item" data-section="system">System</button><button class="nav-item" data-section="experiments">Experiments</button><button class="nav-item" data-section="evidence">Evidence</button><button class="nav-item" data-section="completion">Completion</button>
+    </nav>
+    <div class="header-actions"><a class="ghost-button" href="story.html">Story workspace →</a><button id="presenterButton" class="solid-button">Guide mode</button></div>
+  </header>
+  <main id="main">
+    <section id="overview" class="page hero-section">
+      <div class="hero-copy">
+        <div class="hero-label"><span class="pulse"></span> Deployed · CUDA-trained · Evidence-linked</div>
+        <p class="overline">B.Tech additional project · English → Tamil</p>
+        <h1>Localization that remembers<br><em>what came before.</em></h1>
+        <p class="hero-intro">An end-to-end GenAI research prototype that retrieves narrative context, grounds generation in explicit entity facts, adapts a language model on a 4 GB laptop GPU, and verifies every output before acceptance.</p>
+        <div class="hero-actions"><a class="primary-cta" href="story.html" style="display:inline-flex;align-items:center;gap:20px;text-decoration:none">Translate your story <span>→</span></a><button id="quickDemoButton" class="secondary-cta">Start guide walkthrough</button></div>
+        <div class="audience-switch"><span>View as</span><button class="audience-button active" data-audience="recruiter">Recruiter</button><button class="audience-button" data-audience="researcher">Researcher</button><button class="audience-button" data-audience="guide">Project guide</button></div>
+        <p id="audienceSummary" class="audience-summary">I engineered the complete system—from 5.26M-pair source processing and GPU QLoRA to hybrid RAG, graph memory, verification, API, tests and deployment.</p>
+      </div>
+      <aside class="hero-console">
+        <div class="console-top"><span><i></i><i></i><i></i></span><small>run_manifest.json</small><b>VERIFIED</b></div>
+        <div class="console-code"><p><span>system</span> ContextLab v1</p><p><span>device</span> cuda:0 · RTX 3050</p><p><span>model</span> Qwen2.5-0.5B + NF4 QLoRA</p><p><span>coverage</span> 3,980 / 3,980 rows</p><p><span>steps</span> 995 / 995</p><p><span>peak_vram</span> 2.979 GiB</p><p><span>tests</span> 72 / 72 passed</p></div>
+        <div class="console-result"><span>HELD-OUT OFFICIAL chrF · n=50</span><strong>13.23 <i>→</i> 15.19</strong><b>+14.75% relative</b><small>frozen mined references · native review pending</small></div>
+      </aside>
+      <div class="proof-bar"><article><small>Source corpus</small><strong>5.26M</strong><span>English–Tamil pairs</span></article><article><small>Trainable share</small><strong>1.3768%</strong><span>4.40M parameters</span></article><article><small>Hybrid Recall@3</small><strong>100%</strong><span>controlled benchmark</span></article><article><small>Verifier acceptance</small><strong>33→100%</strong><span>after ≤1 bounded repair</span></article><article><small>Automated suite</small><strong>72/72</strong><span>all tests passed</span></article></div>
+    </section>
+
+    <section id="workspace" class="page content-section workspace-section">
+      <div class="section-index">LIVE WORKSPACE / SUBMISSION EDITION · 26 OCTOBER 2026</div>
+      <div class="section-lead"><div><p class="overline">Try the project</p><h2>Your text.<br><em>Inspectable evidence.</em></h2></div><p>Search real chapters, check a Tamil draft, and export the result. Browser retrieval and verification work on this website. New model generation is available in the local CUDA demo.</p></div>
+      <div class="workspace-shell">
+        <form id="workspaceForm" class="workspace-inputs">
+          <div class="workspace-top"><span class="status-pill complete" id="runtimeStatus">Browser workspace ready</span><button class="ghost-button" type="button" id="loadExample">Load example</button></div>
+          <label for="workspaceSource">English source or retrieval query</label>
+          <textarea id="workspaceSource" maxlength="600" rows="4" required>The White Rabbit took a watch out of its waistcoat-pocket.</textarea>
+          <div class="workspace-selects"><div><label for="workspaceCorpus">Context collection</label><select id="workspaceCorpus"><option value="longform">Alice · 12 chapters</option><option value="demo">Family narrative · controlled demo</option></select></div><div><label for="workspaceEngine">Local GPU model</label><select id="workspaceEngine"><option value="opus_mt">OPUS-MT · translation comparator</option><option value="qlora_adapter">Qwen · saved QLoRA adapter</option></select></div></div>
+          <label class="context-toggle"><input id="workspaceUseContext" type="checkbox" checked> Use retrieval + approved graph in QLoRA prompt</label>
+          <label for="workspaceCandidate">Tamil draft to verify</label>
+          <textarea id="workspaceCandidate" lang="ta" maxlength="4000" rows="4" placeholder="Paste Tamil output here, or generate it with the local CUDA server.">வெள்ளை முயல் தனது பாக்கெட்டிலிருந்து ஒரு கடிகாரத்தை எடுத்தது.</textarea>
+          <div class="workspace-buttons"><button class="primary-cta" type="submit" id="inspectButton">Retrieve + verify</button><button class="secondary-cta" type="button" id="generateButton">Generate on local GPU</button></div>
+          <p id="workspaceMessage" role="status">Inputs stay in your browser unless you use the local API.</p>
+          <div class="artifact-links"><a href="submission/FINAL_REPORT.html" target="_blank">Read submission report ↗</a><a href="submission/CHATGPT_TUTOR_PROMPT.txt" download>Download learning prompt ↓</a><a href="submission/VIVA_AND_DEMO.md" download>Viva + demo guide ↓</a></div>
+        </form>
+        <div class="workspace-results"><div class="workspace-top"><span class="manifest-label">EXECUTION TRACE</span><button type="button" id="exportResult" class="ghost-button">Export JSON ↓</button></div><div id="workspaceDecision" class="workspace-decision">Ready to inspect</div><div id="workspaceChecks"></div><h4>RETRIEVED EVIDENCE</h4><div id="workspaceEvidence" class="workspace-evidence"><p>Choose “Retrieve + verify” to rank the context collection for your input.</p></div><p class="scope-note">Passing script and glossary checks does not establish meaning or fluency. Context-enabled QLoRA consumes retrieved chunks and approved demo graph facts. OPUS-MT is source-only. Context-mode language quality remains unvalidated.</p></div>
+      </div>
+      <div class="benchmark-strip"><div><p class="overline">New held-out evaluation</p><h3>50 unseen examples. Three systems.</h3><p>Frozen by ID before generation, checked for source overlap, with official corpus chrF and a paired bootstrap interval. These results are separate from the earlier six-example demo.</p></div><div id="submissionBenchmark" class="benchmark-results">Benchmark artifact loading…</div></div>
+    </section>
+
+    <section id="system" class="page content-section">
+      <div class="section-index">01 / SYSTEM</div>
+      <div class="section-lead"><div><p class="overline">Architecture</p><h2>One traceable signal path.<br><em>Five engineering layers.</em></h2></div><p>Sentence-only translation forgets characters, terminology and tone. ContextLab makes those dependencies explicit, observable and testable.</p></div>
+      <div class="architecture-flow"><button data-jump="translation"><b>01</b><span>English segment</span><small>text + narrative position</small></button><i>→</i><button data-jump="retrieval"><b>02</b><span>Hybrid RAG</span><small>BM25 + dense + RRF</small></button><i>→</i><button data-jump="graph"><b>03</b><span>Graph memory</span><small>approved entities + facts</small></button><i>→</i><button data-jump="training"><b>04</b><span>Adapted model</span><small>4-bit NF4 QLoRA</small></button><i>→</i><button data-jump="verification"><b>05</b><span>Safety gate</span><small>accept or human review</small></button></div>
+      <div class="bento-grid">
+        <article class="bento wide accent-cyan"><span class="bento-number">DATA / 01</span><h3>Reproducible data engineering</h3><p>Scanned four Samanantar Tamil shards, normalized Unicode, filtered script and length anomalies, deduplicated exact pairs, and froze seeded 80/10/10 splits.</p><div class="mini-metrics"><b>753.9 MB source</b><b>4,974 accepted</b><b>99.48% acceptance</b></div></article>
+        <article class="bento accent-lime"><span class="bento-number">MODEL / 02</span><h3>Parameter-efficient adaptation</h3><p>Completion-only supervised tuning with a frozen quantized base and rank-8 LoRA adapters.</p><strong class="big-stat">98.62%</strong><small>weights kept frozen</small></article>
+        <article class="bento accent-violet"><span class="bento-number">MEMORY / 03</span><h3>Two forms of grounding</h3><p>Unstructured chapter context comes from hybrid retrieval; structured identity and relationship facts come from an evidence-linked graph.</p><div class="tag-row"><span>14 nodes</span><span>6 edges</span><span>0 validation errors</span></div></article>
+        <article class="bento wide accent-coral"><span class="bento-number">CONTROL / 04</span><h3>Bounded verification—not an infinite agent loop</h3><p>Every candidate follows a state machine: retrieve → draft → check → optionally repair approved terminology once → recheck → accept or route to a human.</p><div class="state-line"><span>RETRIEVE</span><i></i><span>VERIFY</span><i></i><span>REPAIR ≤1</span><i></i><span>DECIDE</span></div></article>
+      </div>
+    </section>
+
+    <section id="experiments" class="page content-section experiment-hub">
+      <div class="section-index">02 / EXPERIMENTS</div>
+      <div class="section-lead"><div><p class="overline">Interactive research workbench</p><h2>Inspect the system,<br><em>not just the headline.</em></h2></div><p>Switch models, queries and examples. Every view exposes outputs, latency, evaluation boundaries and the evidence behind a decision.</p></div>
+      <section id="training" class="experiment-block">
+        <div class="block-heading"><span>2.1</span><div><p class="overline">CUDA-only QLoRA</p><h3>A full research-edition epoch on an RTX 3050</h3></div><em class="status-pill complete">Completed run</em></div>
+        <div class="training-layout"><div class="chart-card"><img src="assets/full_loss_curve.png" alt="Training and validation loss over the 995-step QLoRA run"></div><div class="manifest-card"><span class="manifest-label">EXECUTION MANIFEST</span><dl><div><dt>Model</dt><dd>Qwen2.5-0.5B-Instruct</dd></div><div><dt>Quantization</dt><dd>4-bit NF4 + double quant</dd></div><div><dt>Trainable</dt><dd>4,399,104 / 319,518,592</dd></div><div><dt>Optimizer steps</dt><dd id="fullSteps">995</dd></div><div><dt>Training time</dt><dd id="fullTime">59m 35s</dd></div><div><dt>Peak CUDA memory</dt><dd id="fullVram">2.979 GiB</dd></div><div><dt>Validation loss</dt><dd id="fullEvalLoss">1.2441</dd></div><div><dt>Coverage</dt><dd id="trainingCoverage">1.00 epoch</dd></div></dl><div class="artifact-links"><a href="assets/full_training_manifest.json" target="_blank">Training manifest ↗</a><a href="assets/full_adapter_evaluation_summary.json" target="_blank">Paired evaluation ↗</a><a href="assets/full_dataset_manifest.json" target="_blank">Dataset manifest ↗</a></div></div></div>
+        <div class="boundary-note"><b>Claim boundary</b><span>“Full epoch” means all 3,980 cleaned training records in the frozen research edition—not all 5.26M public source pairs.</span></div>
+      </section>
+      <section id="translation" class="experiment-block">
+        <div class="block-heading"><span>2.2</span><div><p class="overline">Translation lab</p><h3>Compare four systems on identical inputs</h3></div><em class="status-pill warning">Prototype n=6</em></div>
+        <div class="lab-shell"><div class="lab-controls"><label for="sampleSelect">Evaluation example</label><select id="sampleSelect"></select><div id="sampleContext" class="context-note"></div><div class="model-legend"><p><i class="qwen"></i><span><b>Qwen2.5-0.5B</b> prompting + adapter research base</span></p><p><i class="opus"></i><span><b>OPUS-MT en-dra</b> dedicated translation comparator</span></p></div></div><div class="lab-stage"><div class="mode-tabs" id="modeTabs" role="tablist"></div><div class="source-line"><span>EN / SOURCE</span><p id="sourceText"></p></div><div class="translation-output"><article><span>MODEL OUTPUT</span><p id="hypothesisText" lang="ta"></p></article><article><span>PROJECT REFERENCE <i>review pending</i></span><p id="referenceText" lang="ta"></p></article></div><div class="score-console"><div><small>chrF-lite</small><strong id="scoreValue"></strong><span class="score-track"><i id="scoreFill"></i></span></div><div><small>Generation latency</small><strong id="latencyValue"></strong></div></div><p id="outputInterpretation" class="interpretation"></p></div></div>
+        <div class="metric-cards"><article><code>Fβ = (1+β²)PR / (β²P+R)</code><h4>chrF</h4><p>Character n-gram F-score. Useful for morphologically rich Tamil because partial word overlap receives credit. Here β=2 gives recall more weight.</p></article><article><code>relevant in top-k / queries</code><h4>Recall@k</h4><p>How often the required context appears within the first k retrieved items. Recall@3 = 1.00 means all six queries found their evidence within three results.</p></article><article><code>mean(1 / relevant rank)</code><h4>MRR</h4><p>Rewards putting the first relevant result near the top. 1.00 is perfect; 0.64 means correct evidence is often, but not always, rank one.</p></article></div>
+      </section>
+      <section id="retrieval" class="experiment-block">
+        <div class="block-heading"><span>2.3</span><div><p class="overline">Hybrid RAG explorer</p><h3>Find the right memory among hard distractors</h3></div><em class="status-pill complete">Runnable demo</em></div>
+        <div class="retrieval-controls"><label for="retrievalQuery">Query</label><select id="retrievalQuery"></select><div class="method-switch" id="methodSwitch" role="tablist"></div></div><div class="retrieval-layout"><div><div class="result-header"><span>Ranked context</span><span id="retrievalLatency"></span></div><div id="rankedResults" class="ranked-results"></div></div><aside class="score-panel"><span class="manifest-label">SIX-QUERY AGGREGATE</span><h3 id="retrievalMethodTitle"></h3><div id="retrievalScores" class="big-scores"></div><p id="retrievalVerdict"></p></aside></div>
+      </section>
+      <section id="graph" class="experiment-block">
+        <div class="block-heading"><span>2.4</span><div><p class="overline">Knowledge-graph memory</p><h3>Inspect explicit, evidence-linked story facts</h3></div><em class="status-pill complete">0 errors · 0 warnings</em></div>
+        <div class="graph-layout"><div class="graph-card"><svg id="graphCanvas" class="graph-canvas" viewBox="0 0 900 520" role="img" aria-label="Interactive narrative knowledge graph"></svg><div class="graph-legend"><span><i class="character"></i>Character</span><span><i class="event"></i>Event</span><span><i class="location"></i>Location</span><span><i class="organization"></i>Organization</span></div></div><aside id="nodeInspector" class="node-inspector"></aside></div>
+      </section>
+      <section id="verification" class="experiment-block">
+        <div class="block-heading"><span>2.5</span><div><p class="overline">Controlled verification</p><h3>Every acceptance decision leaves a trace</h3></div><em class="status-pill complete">6/6 accepted after ≤1 repair</em></div>
+        <div class="verification-stats"><article><small>Initial pass</small><strong>2 / 6</strong><span>33.33% accepted</span></article><i>→</i><article><small>After bounded repair</small><strong>6 / 6</strong><span>100% accepted</span></article><p>Repairs are limited to approved glossary replacements. Fluency, semantics and cultural naturalness still require a Tamil reviewer.</p></div><div class="verification-workbench"><aside class="verification-list" id="verificationList"></aside><article class="trace-panel"><div id="traceHeader"></div><div id="checkList" class="check-table"></div><h4>STATE TRACE</h4><div id="traceSteps" class="trace-steps"></div></article></div>
+      </section>
+    </section>
+
+    <section id="evidence" class="page content-section">
+      <div class="section-index">03 / EVIDENCE</div>
+      <div class="section-lead"><div><p class="overline">Generated artifacts</p><h2>Results you can<br><em>open and inspect.</em></h2></div><p>Each figure is generated from saved experiment output. The dashboard links back to manifests rather than relying on presentation-only claims.</p></div>
+      <div class="evidence-grid"><figure class="featured"><a href="assets/component_evaluation.png" target="_blank"><img src="assets/component_evaluation.png" alt="Component evaluation dashboard"></a><figcaption><span>END-TO-END</span><b>Component evaluation matrix</b><small>Translation, retrieval, graph and verification remain separate metrics.</small></figcaption></figure><figure><a href="assets/full_adapter_comparison.png" target="_blank"><img src="assets/full_adapter_comparison.png" alt="Base and QLoRA adapter comparison"></a><figcaption><span>QLORA</span><b>Base vs adapter</b><small>+4.50 official chrF on paired prototype test.</small></figcaption></figure><figure><a href="assets/retrieval_comparison.png" target="_blank"><img src="assets/retrieval_comparison.png" alt="Retrieval metrics"></a><figcaption><span>RAG</span><b>Retrieval comparison</b><small>Recall@1, Recall@3, MRR and latency.</small></figcaption></figure><figure><a href="assets/full_dataset_eda.png" target="_blank"><img src="assets/full_dataset_eda.png" alt="Research dataset analysis"></a><figcaption><span>DATA</span><b>Research edition EDA</b><small>Filtering, lengths, scripts and frozen splits.</small></figcaption></figure><figure><a href="assets/knowledge_graph.png" target="_blank"><img src="assets/knowledge_graph.png" alt="Knowledge graph"></a><figcaption><span>MEMORY</span><b>Graph evidence</b><small>Typed narrative entities and relationships.</small></figcaption></figure><figure><a href="assets/verification_workflow.png" target="_blank"><img src="assets/verification_workflow.png" alt="Verification workflow"></a><figcaption><span>CONTROL</span><b>Verification workflow</b><small>Deterministic gates and one bounded repair.</small></figcaption></figure></div>
+      <div class="engineering-band"><div><p class="overline">Production-minded engineering</p><h3>Research code with a delivery surface</h3><p>The project is not a notebook-only demo. It includes typed API contracts, deterministic scripts, saved manifests, container packaging and automated tests.</p></div><div class="engineering-list"><span><b>FastAPI</b>health · status · retrieval · graph · verify</span><span><b>Docker</b>Python 3.11 image + health check</span><span><b>Testing</b>72 data, ML, retrieval, graph and API tests</span><span><b>Recovery</b>GitHub source + adapter + processed evidence</span></div></div>
+    </section>
+
+    <section id="completion" class="page content-section">
+      <div class="section-index">04 / COMPLETION</div>
+      <div class="section-lead"><div><p class="overline">Initial plan vs current state</p><h2>Software complete.<br><em>Research still honest.</em></h2></div><p>All eight modules are demonstrable. The submission adds a 50-example held-out GPU benchmark, 152 real chapter chunks, a custom-input workspace and verified Docker execution. Human language review and final long-form validation remain.</p></div>
+      <div class="completion-banner"><div><span>SOFTWARE PROTOTYPE</span><strong>8 / 8</strong><small>planned modules implemented</small></div><div><span>AUTOMATED VERIFICATION</span><strong>72 / 72</strong><small>tests passing</small></div><p>Current claim: <b>complete engineering prototype with preliminary research evidence.</b><br>Not yet: final proof of Tamil quality or production-scale long-form performance.</p></div>
+      <div id="stageList" class="stage-list"></div>
+      <div class="completion-columns"><article class="done-column"><p class="overline">Completed and demonstrable</p><h3>What I can show tomorrow</h3><ul><li>Full-source scan and frozen research dataset</li><li>Four-system prompting/translation baseline</li><li>Real CUDA-only QLoRA epoch and saved adapter</li><li>BM25, dense and hybrid retrieval comparison</li><li>Validated graph and Neo4j-ready Cypher</li><li>Bounded verifier with evidence traces</li><li>Component evaluation, FastAPI, Docker and deployed UI</li></ul></article><article class="pending-column"><p class="overline">Remaining research dependencies</p><h3>What must happen next</h3><ol><li><b>Native-Tamil review</b><span>Review references and outputs for meaning, fluency, tone and cultural naturalness.</span></li><li><b>Human long-form labels</b><span>Twelve real chapters are prepared. Paired Tamil references, semantic relevance labels and graph approvals need a reviewer.</span></li><li><b>Stronger model benchmark</b><span>Compare Tamil-capable candidates; use external GPU compute if 4 GB VRAM is insufficient.</span></li><li><b>Reviewed long-form evaluation</b><span>The frozen 50-example sentence benchmark is complete; human-scored long-form ablations remain.</span></li></ol></article></div>
+      <div id="roadmapGrid" class="roadmap-grid"></div>
+    </section>
+
+    <section id="profile" class="page career-section">
+      <div class="career-copy"><p class="overline">Why this is an AI engineering portfolio project</p><h2>Data. Models. Retrieval.<br>Evaluation. Delivery.</h2><p>I owned the complete lifecycle: problem framing, dataset engineering, GPU training, retrieval and graph design, guardrails, experiment tracking, API packaging, testing and deployment.</p><div class="skill-cloud"><span>PyTorch</span><span>Transformers</span><span>PEFT / QLoRA</span><span>CUDA</span><span>Hybrid RAG</span><span>Knowledge Graphs</span><span>Evaluation</span><span>FastAPI</span><span>Docker</span><span>JavaScript</span></div></div>
+      <div class="resume-card"><div><span>RESUME BULLET · VERIFIED NUMBERS</span><button class="copy-button" data-copy-target="resumeText">Copy</button></div><p id="resumeText">Built and deployed an 8-module English-to-Tamil GenAI localization platform that processed 5.26M source pairs, completed 995 CUDA QLoRA steps on an RTX 3050, improved official chrF by 14.75% (13.23→15.19) on 50 frozen held-out examples, achieved 100% hybrid Recall@3, raised bounded-verifier acceptance from 33.33% to 100%, and passed 72/72 tests.</p><small>New model benchmark: n=50 mined held-out references. Earlier narrative RAG/verifier comparisons: n=6. Native-Tamil review is pending.</small></div>
+    </section>
+  </main>
+  <footer><div class="brand footer-brand"><span class="brand-mark">த</span><span><strong>ContextLab</strong><small>Built by Vignesh · B.Tech GenAI project</small></span></div><p>Evidence-first English-to-Tamil localization research prototype.</p><div><a href="https://github.com/mbvb1312/Context-Lab" target="_blank" rel="noreferrer">Source repository ↗</a><button data-jump="overview">Back to top ↑</button></div></footer>
+  <dialog id="presenterDialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><p class="overline">Tomorrow's guide walkthrough · 4 minutes</p><h2>Show the proof in this order</h2><ol><li><b>Problem — 30 sec</b><span>Sentence translation loses narrative context, entity consistency and terminology.</span></li><li><b>System — 45 sec</b><span>Walk through hybrid RAG → graph memory → adapted model → bounded verifier.</span></li><li><b>GPU evidence — 45 sec</b><span>Show 995 CUDA steps, 2.979 GiB peak VRAM, validation loss and saved manifests.</span></li><li><b>Interactive demo — 90 sec</b><span>Switch translation models, a RAG query, a graph node and a verifier trace.</span></li><li><b>Honest conclusion — 30 sec</b><span>Eight software parts run; 50-example held-out evaluation and real chapters are added. Native review and final long-form ablation remain.</span></li></ol><form method="dialog"><button class="primary-cta" value="close">Ready</button></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=20261026"></script>
+  <script src="workspace.js?v=20261026"></script>
+</body>
+</html>

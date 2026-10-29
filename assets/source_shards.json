@@ -1,0 +1,30 @@
+{
+  "dataset": "ai4bharat/samanantar",
+  "config": "ta",
+  "split": "train",
+  "license": "CC BY-NC 4.0",
+  "total_bytes": 753886808,
+  "rows_scanned": 5264867,
+  "files": [
+    {
+      "file": "0000.parquet",
+      "bytes": 188510147,
+      "sha256": "fe3610228385220f69573898fe80aba6962477d4b5545c5abfbdffbb22e14cd0"
+    },
+    {
+      "file": "0001.parquet",
+      "bytes": 188622479,
+      "sha256": "7322c6daacee08beabdc70d45c68f8f9ddc26c5b53a783b7fd5e05d0ef0eb127"
+    },
+    {
+      "file": "0002.parquet",
+      "bytes": 188257412,
+      "sha256": "bca00a9c3251a4d84e8871de6f465d830e5d24c68628812e0cd5230d35a1a74e"
+    },
+    {
+      "file": "0003.parquet",
+      "bytes": 188496770,
+      "sha256": "168f8f24e749a152d2efe41c6d61fcd8a0e42158afa03a44ed90ddda4b156313"
+    }
+  ]
+}

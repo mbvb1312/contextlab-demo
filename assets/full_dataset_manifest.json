@@ -1,0 +1,35 @@
+{
+  "input": "data\\raw\\samanantar_ta_research_5000.jsonl",
+  "raw_records": 5000,
+  "accepted_records": 4974,
+  "rejected_records": 26,
+  "acceptance_rate": 0.9948,
+  "split_counts": {
+    "train": 3980,
+    "validation": 497,
+    "test": 497
+  },
+  "rejection_reason_counts": {
+    "target_not_mostly_tamil": 20,
+    "suspicious_length_ratio": 6
+  },
+  "seed": 42,
+  "quality_thresholds": {
+    "minimum_source_latin_ratio": 0.5,
+    "minimum_target_tamil_ratio": 0.5,
+    "target_to_source_char_ratio": [
+      0.15,
+      8.0
+    ]
+  },
+  "source_parquet_files": [
+    "data\\raw\\samanantar_ta_parquet\\0000.parquet",
+    "data\\raw\\samanantar_ta_parquet\\0001.parquet",
+    "data\\raw\\samanantar_ta_parquet\\0002.parquet",
+    "data\\raw\\samanantar_ta_parquet\\0003.parquet"
+  ],
+  "source_parquet_bytes": 753886808,
+  "complete_tamil_rows_scanned": 5264867,
+  "research_sample_size": 5000,
+  "sampling_method": "seeded reservoir sample over all local Tamil parquet shards"
+}

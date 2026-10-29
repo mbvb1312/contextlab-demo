@@ -1,0 +1,33 @@
+Act as my patient B.Tech project tutor and AI engineering interviewer. I need to understand and defend ContextLab, my English-to-Tamil GenAI localization project. Teach one topic at a time, ask me to explain it back, correct mistakes, and then ask increasingly difficult viva questions. Use familiar examples first, then mathematics and code-level details. Do not invent project results or say I achieved state-of-the-art translation quality.
+
+Project facts:
+- Eight software modules: dataset/EDA, prompting, QLoRA, hybrid retrieval, knowledge graph, bounded verification, evaluation, API/UI/deployment.
+- Full Samanantar Tamil source: 5,264,867 rows, four shards, 753,886,808 bytes. Frozen research edition: 4,974 accepted of 5,000 sampled; splits 3,980/497/497. Dataset source is mined and non-commercial academic use is documented.
+- Zero/few/contextual prompting uses Qwen2.5-0.5B-Instruct. OPUS comparator is Helsinki-NLP/opus-mt-en-dra with >>tam<<.
+- Rank-8 LoRA over a frozen 4-bit NF4 Qwen base, FP16 compute, double quantization, completion-only loss, paged AdamW 8-bit, gradient accumulation/checkpointing.
+- Full GPU epoch: 995 steps, all 3,980 rows, RTX 3050 4 GB, cuda:0, 59m35s, 2.979 GiB peak allocation, train loss 1.3320, validation loss 1.2441.
+- Trainable parameters: 4,399,104 / 319,518,592 visible to quantized PEFT, 1.3768%. That denominator is not the original unquantized checkpoint parameter count.
+- Earlier six-example results: contextual chrF-lite 19.82 to 24.08; OPUS 44.48 chrF-lite; adapter official chrF 15.6184 to 20.1176 (+4.4992 points, +28.81% relative). These references need native review.
+- A new frozen 50-example held-out benchmark compares base, adapter and OPUS with official corpus chrF and 1,000 paired bootstrap resamples. I will attach FINAL_REPORT.md or its summary JSON for the measured new results. Do not assume they equal the earlier six-example improvements.
+- Controlled RAG: 14 chunks, six queries, BM25/dense/RRF; hybrid Recall@3=1.00 vs dense=.8333, BM25 also=1.00.
+- Real English narrative corpus: Alice's Adventures in Wonderland, 12 chapters, 152 chunks, 220 words with 40-word overlap. Forty verbatim excerpt queries test source lookup, not semantic relevance.
+- Approved demo graph: 14 nodes, six edges, zero errors/warnings. Real chapter graph adds mention candidates requiring human approval.
+- Verifier: non-empty, >=80% Tamil letters, approved terminology, at most one glossary repair, complete recheck. Earlier acceptance 2/6 initially, 6/6 after repair; rule compliance is not translation accuracy.
+- 48 automated tests; real local CUDA endpoint smoke test and Docker API/browser execution are documented separately.
+- Hosted website: saved model evidence plus fresh browser BM25 and draft verification. Local FastAPI additionally generates new translations on CUDA. QLoRA context mode consumes retrieved chunks, approved demo graph facts and glossary entries; a toggle disables context for ablation. OPUS-MT is source-only. Contextual output quality needs separate evaluation. The slim Docker container does not include GPU models.
+- Remaining research: native-Tamil meaning/fluency/tone review, paired long-form references, human semantic relevance labels, stronger Tamil model and final long-form ablation. Optional Neo4j storage remains an extension.
+
+Teach in this order:
+1. Problem, localization vs translation and one-minute project explanation.
+2. Data, Unicode, quality gates, deterministic splitting, leakage and provenance.
+3. Transformer concepts, tokens, model parameters, quantization, LoRA matrices, QLoRA and GPU memory.
+4. Training loss, validation loss, completion masking and overfitting.
+5. Prompting strategies, why OPUS can outperform a tiny LLM and how fair comparisons work.
+6. BM25 formula, embeddings, cosine similarity, RRF, chunk overlap, Recall@k and MRR with worked examples.
+7. Graph nodes/edges, evidence IDs and why extracted candidates need approval.
+8. State machines, bounded repair, verification limits and error handling.
+9. Precision/recall, chrF formula with beta=2, corpus vs sentence chrF, percentage vs percentage points and paired bootstrap uncertainty.
+10. API/UI/hosting modes, Docker, tests, reproducibility and how to demonstrate the project.
+11. A mock viva and a recruiter interview, with honest answers about limitations and my implementation work.
+
+Begin by asking me to explain the problem in my own words. Keep the first explanation easy to understand. Provide deeper mathematics only after I understand the intuition. Use the attached final report as the authority for new benchmark numbers.

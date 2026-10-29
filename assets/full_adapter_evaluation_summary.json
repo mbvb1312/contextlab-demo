@@ -1,0 +1,29 @@
+{
+  "status": "completed_preliminary_paired_evaluation",
+  "evaluation_examples": 6,
+  "reference_status": "Project-authored references; native-Tamil review pending",
+  "comparison": [
+    {
+      "system": "base_4bit",
+      "examples": 6,
+      "mean_chrf_lite": 15.003,
+      "official_corpus_chrf": 15.6184,
+      "mean_tamil_script_ratio": 1.0,
+      "mean_numeric_preservation": null,
+      "numeric_examples": 0,
+      "mean_latency_seconds": 6.5804,
+      "failures": 0
+    },
+    {
+      "system": "qlora_adapter",
+      "examples": 6,
+      "mean_chrf_lite": 18.9859,
+      "official_corpus_chrf": 20.1176,
+      "mean_tamil_script_ratio": 1.0,
+      "mean_numeric_preservation": null,
+      "numeric_examples": 0,
+      "mean_latency_seconds": 5.6156,
+      "failures": 0
+    }
+  ]
+}

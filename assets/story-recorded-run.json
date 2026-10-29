@@ -1,0 +1,275 @@
+{
+  "provenance": {
+    "kind": "recorded_execution",
+    "recorded_date": "2026-10-28",
+    "source": "reports/story_workspace/http_gpu_integration.json",
+    "fixture": "Meena and Karthik GPU integration",
+    "quality_scope": "Development fixture used during prompt refinement. Not a held-out quality benchmark; Tamil requires review."
+  },
+  "story": {
+    "id": "a84c88152224459d",
+    "title": "Meena and Karthik GPU integration",
+    "text": "Karthik is Meena's younger brother. Meena lives in Madurai. Karthik works at Lotus Labs.",
+    "glossary": {},
+    "source_sha256": "b9e0983d0a907dc347e9993c3099e49fa19d95993f68d96b5854edbddb65cb52",
+    "created_at": "2026-10-28T10:24:48.260311+00:00",
+    "updated_at": "2026-10-28T10:25:06.247053+00:00",
+    "status": "ready",
+    "progress": "Recorded preparation: MiniLM embeddings and Qwen3 relationship proposals. Approved facts below were reviewed during this controlled run.",
+    "chunks": [
+      {
+        "id": "chunk-0001",
+        "text": "Karthik is Meena's younger brother. Meena lives in Madurai. Karthik works at Lotus Labs.",
+        "start_char": 0,
+        "end_char": 88,
+        "token_count": 26
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "entity-63b7cc6dd0c1",
+          "name": "Karthik",
+          "type": "Character"
+        },
+        {
+          "id": "entity-f9b87cab13a1",
+          "name": "Meena",
+          "type": "Character"
+        },
+        {
+          "id": "entity-9c1de62abfe0",
+          "name": "Madurai",
+          "type": "Location"
+        },
+        {
+          "id": "entity-e1318dd97c77",
+          "name": "Lotus Labs",
+          "type": "Organization"
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-a9d023e1dfb1",
+          "subject": "Karthik",
+          "subject_type": "Character",
+          "relation": "YOUNGER_BROTHER_OF",
+          "object": "Meena",
+          "object_type": "Character",
+          "evidence_quote": "Karthik is Meena's younger brother.",
+          "evidence_chunk_id": "chunk-0001",
+          "status": "approved",
+          "support_check": "exact_quote_and_entities_present",
+          "review_note": "Textual support is checked; relationship correctness still requires review",
+          "reviewed_at": "2026-10-28T10:25:06.657183+00:00"
+        },
+        {
+          "id": "fact-9d123f614259",
+          "subject": "Meena",
+          "subject_type": "Character",
+          "relation": "LIVES_IN",
+          "object": "Madurai",
+          "object_type": "Location",
+          "evidence_quote": "Meena lives in Madurai",
+          "evidence_chunk_id": "chunk-0001",
+          "status": "approved",
+          "support_check": "exact_quote_and_entities_present",
+          "review_note": "Textual support is checked; relationship correctness still requires review",
+          "reviewed_at": "2026-10-28T10:25:06.657183+00:00"
+        },
+        {
+          "id": "fact-521e9f9c9a7d",
+          "subject": "Karthik",
+          "subject_type": "Character",
+          "relation": "WORKS_AT",
+          "object": "Lotus Labs",
+          "object_type": "Organization",
+          "evidence_quote": "Karthik works at Lotus Labs",
+          "evidence_chunk_id": "chunk-0001",
+          "status": "approved",
+          "support_check": "exact_quote_and_entities_present",
+          "review_note": "Textual support is checked; relationship correctness still requires review",
+          "reviewed_at": "2026-10-28T10:25:06.657183+00:00"
+        }
+      ],
+      "rejected": []
+    },
+    "extraction_runs": [
+      {
+        "model": "Qwen/Qwen3-1.7B",
+        "device": "cuda:0",
+        "input_tokens": 280,
+        "output_tokens": 129,
+        "seconds": 9.904,
+        "peak_allocated_gib": 1.331,
+        "chunk_id": "chunk-0001",
+        "raw_output": "{\"facts\": [{\"subject\":\"Karthik\",\"subject_type\":\"Character\",\"relation\":\"YOUNGER_BROTHER_OF\",\"object\":\"Meena\",\"object_type\":\"Character\",\"evidence_quote\":\"Karthik is Meena's younger brother.\"},{\"subject\":\"Meena\",\"subject_type\":\"Character\",\"relation\":\"LIVES_IN\",\"object\":\"Madurai\",\"object_type\":\"Location\",\"evidence_quote\":\"Meena lives in Madurai\"},{\"subject\":\"Karthik\",\"subject_type\":\"Character\",\"relation\":\"WORKS_AT\",\"object\":\"Lotus Labs\",\"object_type\":\"Organization\",\"evidence_quote\":\"Karthik works at Lotus Labs\"}]}"
+      }
+    ],
+    "embedding": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+      "device": "cpu",
+      "dimensions": 384
+    },
+    "graph_model": "Qwen/Qwen3-1.7B",
+    "scope": "English background; generated relationships require review",
+    "completed_at": "2026-10-28T10:25:06.247053+00:00"
+  },
+  "translation": {
+    "id": "6164423ff3144916",
+    "story_id": "a84c88152224459d",
+    "created_at": "2026-10-28T10:25:14.606766+00:00",
+    "source": "Meena, call your brother before leaving.",
+    "resolved_source": "Meena, call your younger brother before leaving.",
+    "source_only_translation": "மைனா, போகுமுன் உங்கள் அண்ணன் அழைப்பு.",
+    "translation": "மைனா, உங்கள் தம்பியை போகுமுன் அழைக்க.",
+    "raw_context_translation": "மைனா, உங்கள் தம்பியை போகுமுன் அழைக்க.",
+    "context_enabled": true,
+    "context_used_by_generator": true,
+    "graph_enabled": true,
+    "retrieval": {
+      "story_id": "a84c88152224459d",
+      "query": "Meena, call your brother before leaving.",
+      "method": "MiniLM cosine + BM25 + reciprocal rank fusion",
+      "results": [
+        {
+          "id": "chunk-0001",
+          "text": "Karthik is Meena's younger brother. Meena lives in Madurai. Karthik works at Lotus Labs.",
+          "start_char": 0,
+          "end_char": 88,
+          "token_count": 26,
+          "dense_score": 0.47901,
+          "bm25_score": 0.69866,
+          "rrf_score": 0.032787
+        }
+      ],
+      "graph_facts": [
+        {
+          "id": "fact-a9d023e1dfb1",
+          "subject": "Karthik",
+          "subject_type": "Character",
+          "relation": "YOUNGER_BROTHER_OF",
+          "object": "Meena",
+          "object_type": "Character",
+          "evidence_quote": "Karthik is Meena's younger brother.",
+          "evidence_chunk_id": "chunk-0001",
+          "status": "approved",
+          "support_check": "exact_quote_and_entities_present",
+          "review_note": "Textual support is checked; relationship correctness still requires review",
+          "reviewed_at": "2026-10-28T10:25:06.657183+00:00"
+        },
+        {
+          "id": "fact-9d123f614259",
+          "subject": "Meena",
+          "subject_type": "Character",
+          "relation": "LIVES_IN",
+          "object": "Madurai",
+          "object_type": "Location",
+          "evidence_quote": "Meena lives in Madurai",
+          "evidence_chunk_id": "chunk-0001",
+          "status": "approved",
+          "support_check": "exact_quote_and_entities_present",
+          "review_note": "Textual support is checked; relationship correctness still requires review",
+          "reviewed_at": "2026-10-28T10:25:06.657183+00:00"
+        },
+        {
+          "id": "fact-521e9f9c9a7d",
+          "subject": "Karthik",
+          "subject_type": "Character",
+          "relation": "WORKS_AT",
+          "object": "Lotus Labs",
+          "object_type": "Organization",
+          "evidence_quote": "Karthik works at Lotus Labs",
+          "evidence_chunk_id": "chunk-0001",
+          "status": "approved",
+          "support_check": "exact_quote_and_entities_present",
+          "review_note": "Textual support is checked; relationship correctness still requires review",
+          "reviewed_at": "2026-10-28T10:25:06.657183+00:00"
+        }
+      ],
+      "graph_enabled": true,
+      "pending_facts_excluded": 0,
+      "embedding_model": "sentence-transformers/all-MiniLM-L6-v2"
+    },
+    "resolution": {
+      "resolved_source": "Meena, call your younger brother before leaving.",
+      "used_fact_ids": [
+        "fact-a9d023e1dfb1"
+      ],
+      "used_chunk_ids": [],
+      "explanation": "The approved relationship fact F1 states that Karthik is Meena's younger brother. The sentence is resolved by replacing 'your' with 'your younger' to clarify the relationship.",
+      "needs_review": false,
+      "changed": true,
+      "scope": "Evidence IDs, numeric preservation and length are checked; semantic equivalence requires human review.",
+      "evidence_aliases": {
+        "facts": {
+          "F1": "fact-a9d023e1dfb1",
+          "F2": "fact-9d123f614259",
+          "F3": "fact-521e9f9c9a7d"
+        },
+        "chunks": {
+          "C1": "chunk-0001"
+        }
+      }
+    },
+    "verification": {
+      "decision": "HUMAN_REVIEW",
+      "initial_checks": [
+        {
+          "code": "non_empty",
+          "passed": true,
+          "detail": "Candidate contains text"
+        },
+        {
+          "code": "tamil_script_ratio",
+          "passed": true,
+          "value": 1.0,
+          "threshold": 0.8,
+          "detail": "Tamil-letter ratio 100.0%; required at least 80%"
+        }
+      ],
+      "final_checks": [
+        {
+          "code": "non_empty",
+          "passed": true,
+          "detail": "Candidate contains text"
+        },
+        {
+          "code": "tamil_script_ratio",
+          "passed": true,
+          "value": 1.0,
+          "threshold": 0.8,
+          "detail": "Tamil-letter ratio 100.0%; required at least 80%"
+        }
+      ],
+      "changes": [],
+      "review_reasons": [
+        "Context-guided generation requires semantic review; automated gates cover script and terminology",
+        "An English rewrite needs semantic review before final acceptance"
+      ]
+    },
+    "runtime": {
+      "device": "cuda:0",
+      "embedding_device": "cpu",
+      "resolver_model": "Qwen/Qwen3-1.7B",
+      "translation_model": "Helsinki-NLP/opus-mt-en-dra",
+      "generation_runs": [
+        {
+          "model": "Qwen/Qwen3-1.7B",
+          "device": "cuda:0",
+          "input_tokens": 588,
+          "output_tokens": 86,
+          "seconds": 6.583,
+          "peak_allocated_gib": 1.376,
+          "stage": "english_context_resolution",
+          "raw_output": "{\n  \"resolved_source\": \"Meena, call your younger brother before leaving.\",\n  \"used_fact_ids\": [\"F1\"],\n  \"used_chunk_ids\": [],\n  \"explanation\": \"The approved relationship fact F1 states that Karthik is Meena's younger brother. The sentence is resolved by replacing 'your' with 'your younger' to clarify the relationship.\",\n  \"needs_review\": false\n}"
+        }
+      ],
+      "opus_draft_seconds": 0.1338,
+      "opus_context_seconds": 0.1288,
+      "total_seconds": 7.933
+    },
+    "scope": "Context resolves English before OPUS translation. OPUS receives only the resolved English, not a prompt. Tamil quality and English rewrite faithfulness require human review."
+  }
+}

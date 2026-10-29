@@ -1,0 +1,86 @@
+{
+  "status": "completed_full_training_split_gpu_run",
+  "experiment_name": "qwen2.5-0.5b-en-ta-qlora-full-pass-v1",
+  "purpose": "Full-pass local QLoRA run sized for an RTX 3050 4 GB laptop GPU",
+  "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "method": "QLoRA: frozen 4-bit NF4 base model plus trainable LoRA adapters",
+  "quantization": {
+    "load_in_4bit": true,
+    "bnb_4bit_quant_type": "nf4",
+    "bnb_4bit_use_double_quant": true,
+    "bnb_4bit_compute_dtype": "float16"
+  },
+  "lora": {
+    "rank": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "bias": "none",
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "training": {
+    "max_steps": -1,
+    "num_train_epochs": 1.0,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 0.0002,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.01,
+    "logging_steps": 10,
+    "evaluation_steps": 995,
+    "save_steps": 995,
+    "max_grad_norm": 1.0,
+    "optimizer": "paged_adamw_8bit",
+    "gradient_checkpointing": true
+  },
+  "train_records": 3980,
+  "source_train_records": 3980,
+  "overlength_train_records_skipped": 0,
+  "validation_records": 497,
+  "full_training_split_used": true,
+  "completed_optimizer_steps": 995,
+  "completed_epochs": 1.0,
+  "trainable_parameters": 4399104,
+  "total_parameters_visible_to_peft": 319518592,
+  "trainable_percentage": 1.3768,
+  "training_seconds": 3575.05,
+  "peak_cuda_memory_gib": 2.979,
+  "train_metrics": {
+    "train_runtime": 3575.0895,
+    "train_samples_per_second": 1.113,
+    "train_steps_per_second": 0.278,
+    "total_flos": 1538238621315072.0,
+    "train_loss": 1.3320122697245536,
+    "epoch": 1.0
+  },
+  "validation_metrics": {
+    "eval_loss": 1.2441188097000122,
+    "eval_runtime": 148.2792,
+    "eval_samples_per_second": 3.352,
+    "eval_steps_per_second": 3.352,
+    "epoch": 1.0
+  },
+  "adapter_dir": "C:\\Users\\vicky\\Documents\\projects\\ADDITIONAL PROJECT\\artifacts\\part3_qlora\\qwen2.5-0.5b-full-pass-v1\\adapter",
+  "software": {
+    "torch": "2.5.1+cu121",
+    "transformers": "4.49.0",
+    "peft": "0.14.0",
+    "bitsandbytes": "0.48.1"
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 3050 4GB Laptop GPU",
+    "cuda_available": true,
+    "cuda_device_index": 0,
+    "cuda_runtime": "12.1",
+    "model_input_device": "cuda:0",
+    "total_vram_gib": 4.0
+  }
+}
